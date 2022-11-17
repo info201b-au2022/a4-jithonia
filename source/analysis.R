@@ -113,9 +113,6 @@ get_jail_pop_by_states <- function(states) {
     ) 
 }
 
-w <- get_jail_pop_by_states(c("WA", "CA"))
-wa <- plot_jail_pop_by_states(c("WA", "CA"))
-
 plot_jail_pop_by_states <- function(states) {
   plot <- ggplot(get_jail_pop_by_states(states),
                  aes(x = year, y = total_prison_pop, col = state)) +
