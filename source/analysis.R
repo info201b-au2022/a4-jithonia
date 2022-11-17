@@ -105,11 +105,24 @@ plot_jail_pop_for_us <- function()  {
 
 get_jail_pop_by_states <- function(states) {
   jail_pop_state <- prison %>% 
-    filter(states == state) 
+    filter(state %in% states) %>% 
+    filter(!is.na(total_prison_pop)) %>%
+    group_by(state, year) %>% 
+    summarize(
+      total_prison_pop = sum(total_prison_pop)
+    ) 
 }
 
+w <- get_jail_pop_by_states(c("WA", "CA"))
+wa <- plot_jail_pop_by_states(c("WA", "CA"))
+
 plot_jail_pop_by_states <- function(states) {
-  
+  plot <- ggplot(get_jail_pop_by_states(states),
+                 aes(x = year, y = total_prison_pop, col = state)) +
+    geom_line() +
+    labs(x = "year", 
+         y = "Total Prison Population",
+         title = "-")
 }
 
 #----------------------------------------------------------------------------#
