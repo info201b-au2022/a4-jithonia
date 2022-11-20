@@ -20,10 +20,11 @@ source("../source/analysis.R")
 [TODO]
 
 ## Section 3
-[TODO]
+```{r fig.height = 8, fig.width= 8, fig.align = "center", echo = FALSE}
+plot_jail_pop_for_us()
+```
 
 ## Section 4
-[TODO]
 
 ## Section 5
 [TODO]

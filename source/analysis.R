@@ -3,22 +3,7 @@ library(tidyverse)
 # The functions might be useful for A4
 source("../source/a4-helpers.R")
 
-## Test queries ----
-#----------------------------------------------------------------------------#
-# Simple queries for basic testing
-#----------------------------------------------------------------------------#
-# Return a simple string
-test_query1 <- function() {
-  return ("Hello world")
-}
-
-# Return a vector of numbers
-test_query2 <- function(num=6) {
-  v <- seq(1:num)
-  return(v)
-}
-
-
+# Load dataset
 prison <- read.csv("https://raw.githubusercontent.com/vera-institute/incarceration-trends/master/incarceration_trends.csv")
 
 ## Section 2  ---- 
@@ -122,13 +107,14 @@ plot_jail_pop_by_states <- function(states) {
          title = "-")
 }
 
+states_pop_plot <- plot_jail_pop_by_states(c("CA", "FL", "OH", "IL"))
+
 #----------------------------------------------------------------------------#
 
 ## Section 5  ---- 
 #----------------------------------------------------------------------------#
-# <variable comparison that reveals potential patterns of inequality>
-# Your functions might go here ... <todo:  update comment>
-# See Canvas
+
+
 #----------------------------------------------------------------------------#
 
 ## Section 6  ---- 
