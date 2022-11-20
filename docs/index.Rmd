@@ -5,7 +5,7 @@ date: '2022-11-01'
 output: html_document
 ---
 
-```{r echo=FALSE, eval=TRUE, message=FALSE}
+```{r echo = FALSE, eval = TRUE, message = FALSE}
 source("../source/a4-helpers.R")
 source("../source/analysis.R")
 ```
@@ -20,11 +20,14 @@ source("../source/analysis.R")
 [TODO]
 
 ## Section 3
-```{r fig.height = 8, fig.width= 8, fig.align = "center", echo = FALSE}
+```{r fig.height = 8, fig.width = 8, fig.align = "center", echo = FALSE}
 plot_jail_pop_for_us()
 ```
 
 ## Section 4
+```{r fig.height = 8, fig.width= 8, fig.align = "center", echo = FALSE}
+states_pop_plot
+```
 
 ## Section 5
 [TODO]

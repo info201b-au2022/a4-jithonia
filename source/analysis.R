@@ -4,7 +4,7 @@ library(tidyverse)
 source("../source/a4-helpers.R")
 
 # Load dataset
-prison <- read.csv("https://raw.githubusercontent.com/vera-institute/incarceration-trends/master/incarceration_trends.csv")
+prison <- read_delim("https://raw.githubusercontent.com/vera-institute/incarceration-trends/master/incarceration_trends.csv")
 
 ## Section 2  ---- 
 
