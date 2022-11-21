@@ -30,7 +30,9 @@ states_pop_plot
 ```
 
 ## Section 5
-[TODO]
+```{r fig.height = 8, fig.width= 8, fig.align = "center", echo = FALSE}
+section5plot()
+```
 
 ## Section 6
 [TODO]

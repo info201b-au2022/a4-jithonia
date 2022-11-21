@@ -1,4 +1,6 @@
 library(tidyverse)
+library(dplyr)
+library(plotly)
 
 # The functions might be useful for A4
 source("../source/a4-helpers.R")
@@ -152,22 +154,25 @@ white_jail_perc <- function() {
       )
 }
 
-combine <- data.frame(white_jail_perc(), black_latinx_jail_perc()) 
+combine <- data.frame(white_jail_perc(), black_latinx_jail_perc())
   
 
 section5plot <- function() {
   plot <- ggplot(
-    data = combine,
-    aes(x = black_latinx_jail_perc(), 
-        y = white_jail_perc(), 
-        col = region)) + 
-  scale_y_continuous(labels = function(x) paste0(x, "%")) +
-  scale_x_continuous(labels = function(x) paste0(x, "%")) +
+    combine,
+    aes(x = black_latinx_total, 
+        y = white_total......., 
+        col = region)
+    ) + 
+    geom_point(
+      size = 6,
+    ) +
     labs(
       x = "--",
       y = "--",
       title = "--"
-      ) %>% 
+      ) 
+    plot <- ggplotly(plot, tooltip = c("text"))
     return(plot)
 }
 
