@@ -154,7 +154,7 @@ white_jail_perc <- function() {
       )
 }
 
-combine <- data.frame(white_jail_perc(), black_latinx_jail_perc())
+combine <- data.frame(white_jail_perc(), black_latinx_jail_perc()) 
   
 
 section5plot <- function() {
@@ -172,7 +172,7 @@ section5plot <- function() {
       y = "--",
       title = "--"
       ) 
-    plot <- ggplotly(plot, tooltip = c("text"))
+    plot <- ggplotly(plot)
     return(plot)
 }
 
@@ -180,9 +180,9 @@ section5plot <- function() {
 
 ## Section 6  ----
 #----------------------------------------------------------------------------#
-# <a map shows potential patterns of inequality that vary geographically>
-# Your functions might go here ... <todo:  update comment>
-# See Canvas
+
+
 #----------------------------------------------------------------------------#
+
 
 ## Load data frame ----

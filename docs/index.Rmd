@@ -11,7 +11,7 @@ source("../source/analysis.R")
 ```
 
 ## Abstract 
-[TODO: Include a short abstract (about 50 words)]
+The justice system of America is said to be fair, but there are still manifestations of racism in these systems. Observing incarceration trends can answer the questions of how prevalent racism is in the prison systems, if and how it has progressed over the years, and other forms of inequalities there are in the systems.  
 
 ## Introduction 
 [TODO]
