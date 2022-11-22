@@ -119,8 +119,6 @@ plot_jail_pop_by_states <- function(states) {
     )
 }
 
-states_pop_plot <- plot_jail_pop_by_states(c("CA", "FL", "OH", "TX"))
-
 #----------------------------------------------------------------------------#
 
 ## Section 5  ----
@@ -134,7 +132,7 @@ black_latinx_jail_perc <- function() {
     ) %>%
     group_by(region) %>%
     summarize(
-      black_latinx_total = round(((sum(black_jail_pop) + sum(latinx_jail_pop)) / sum(total_jail_pop, na.rm = TRUE)), 3)
+      black_latinx_total = round(((sum(black_jail_pop) + sum(latinx_jail_pop)) / sum(total_jail_pop, na.rm = TRUE)), 3) * 100
     )
 }
 
@@ -147,12 +145,11 @@ white_jail_perc <- function() {
     ) %>%
     group_by(region) %>%
     summarize(
-      white_total <- round((sum(white_jail_pop) / (sum(total_jail_pop, na.rm = TRUE))), 3)
+      white_total <- round((sum(white_jail_pop) / (sum(total_jail_pop, na.rm = TRUE))), 3) * 100
     )
 }
 
-combine <- data.frame(white_jail_perc(), black_latinx_jail_perc())
-
+combine <- data.frame(white_jail_perc(), black_latinx_jail_perc()) 
 
 section5plot <- function() {
   plot <- ggplot(
@@ -160,7 +157,11 @@ section5plot <- function() {
     aes(
       x = black_latinx_total,
       y = white_total.......,
-      col = region
+      col = region,
+      text = paste("Black/Latinx Percentage:", black_latinx_total, "%",
+                   "\nWhite Percentage:", white_total......., "%",
+                   "\nRegion:", region
+      )
     )
   ) +
     geom_point(
@@ -171,7 +172,7 @@ section5plot <- function() {
       y = "Percentage of Black and Latinx population in Jail",
       title = "Percentage of Black/Latinx and White Population in Jail in each Region of the U.S."
     )
-  plot <- ggplotly(plot)
+  plot <- ggplotly(plot, tooltip = c("text"))
   return(plot)
 }
 
@@ -179,12 +180,28 @@ section5plot <- function() {
 
 ## Section 6  ----
 #----------------------------------------------------------------------------#
-section6 <- function() {
-
+black_latinx_jail_map_data <- function() {
+  black_latinx_jail_pop <- prison %>%
+    group_by(state) %>% 
+    filter(!is.na(black_jail_pop),
+           !is.na(latinx_jail_pop),
+           !is.na(white_jail_pop),
+           year == max(year)) %>% 
+    summarize(
+      black_latinx_total <- sum(black_jail_pop) + sum(latinx_jail_pop)
+    )
 }
 
 section6plot <- function() {
-
+  shape <- map_data("state")
+  plot6 <- ggplot(shape) +
+    geom_polygon(
+      aes(x = long,
+          y = lat,
+          group = group),
+      color = "black"
+    ) 
+  return(plot6)
 }
 #----------------------------------------------------------------------------#
 
