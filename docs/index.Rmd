@@ -17,14 +17,26 @@ The justice system of America is said to be fair, but there are still manifestat
 [TODO]
 
 ## Data Summary 
-[TODO]
+Question 1: What is the percentage of black individuals in jail compared to total jail population in the year 2018? 
 
-## Section 3
+The percentage of black individuals in jail is **`r black_jail_prop`**%. 
+
+Question 2: What year has the highest black population in jail? 
+
+**`r highest_black_pop_year`** had the highest black population in jail. 
+
+Question 3: What county has the highest population of black and latinx individuals in jail in 2018?
+
+**`r county_highest_black_pop`** has the highest population of black individuals in jail.
+
+**`r county_highest_latinx_pop` has the highest population of latinx individuals in jail.
+
+## U.S. Jail Population Growth
 ```{r fig.height = 8, fig.width = 8, fig.align = "center", echo = FALSE}
 plot_jail_pop_for_us()
 ```
 
-## Section 4
+## State Jail Population Growth 
 ```{r fig.height = 8, fig.width= 8, fig.align = "center", echo = FALSE}
 states_pop_plot
 ```
