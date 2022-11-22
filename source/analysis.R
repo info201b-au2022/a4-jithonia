@@ -39,7 +39,7 @@ jail_total <- prison %>%
   pull(jail_total)
 
 # proportion of black and total individuals in jail
-black_jail_prop <- round((black_jail_total / jail_total), 2)
+black_jail_prop <- round((black_jail_total / jail_total), 2) * 10
 
 ## year with the most black individuals in jail
 total_black_pop_year <- prison %>%
