@@ -84,7 +84,7 @@ plot_jail_pop_for_us <- function() {
     labs(
       x = "Year",
       y = "Total Jail Population",
-      title = "Increase of Jail Population in U.S. (1970-2018)",
+      title = "Increase of Jail Populgigation in U.S. (1970-2018)",
       caption = "---"
     ) +
     scale_y_continuous(labels = scales::comma)
@@ -101,7 +101,7 @@ get_jail_pop_by_states <- function(states) {
     filter(!is.na(total_prison_pop)) %>%
     group_by(state, year) %>%
     summarize(
-      total_prison_pop = sum(total_prison_pop)
+      total_prison_pop = sum(total_prison_pop), .groups = "keep"
     )
 }
 
