@@ -57,4 +57,7 @@ section5plot()
 ```
 
 ## Section 6
+```{r fig.width = 10, fig.align = "center", echo = FALSE}
+section6plot()
+```
 [TODO]

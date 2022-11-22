@@ -2,6 +2,7 @@ library(tidyverse)
 library(dplyr)
 library(plotly)
 library(leaflet)
+library(maps)
 
 # The functions might be useful for A4
 source("../source/a4-helpers.R")
@@ -12,7 +13,8 @@ prison <- read_delim("https://raw.githubusercontent.com/vera-institute/incarcera
 ## Section 2  ----
 
 ## proportion of black people in jail and the total jail population in the
-## most recent year.
+## most recent year (2018)
+
 # Total number of black people in jail
 black_jail_total <- prison %>%
   filter(year == max(year)) %>%
@@ -189,21 +191,34 @@ black_latinx_jail_map_data <- function() {
            !is.na(white_jail_pop),
            year == max(year)) %>% 
     summarize(
-      black_latinx_total <- sum(black_jail_pop) + sum(latinx_jail_pop)
+      black_latinx_total = sum(black_jail_pop) + sum(latinx_jail_pop)
     )
 }
 
+states <- state.fips
+states$polyname <- gsub(":[[:alnum:][:space:][:punct:]]+", "", states$polyname)
+states <- distinct(states, abb, polyname)
+
+section6data <- inner_join(states, black_latinx_jail_map_data(), by = c("abb" = "state"))
+
+
 section6plot <- function() {
-  shape <- map_data("state")
+  shape <- map_data("state") %>% 
+    inner_join(section6data, by = c("region" = "polyname"))
   plot6 <- ggplot(shape) +
     geom_polygon(
       aes(x = long,
           y = lat,
-          group = group),
+          group = group, fill = black_latinx_total),
       color = "black"
-    ) 
+    ) +
+    theme_void() + 
+    labs(
+      fill = "Black/Latinx Population"
+    )
   return(plot6)
 }
+
 #----------------------------------------------------------------------------#
 
 
