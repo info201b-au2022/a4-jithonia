@@ -39,7 +39,7 @@ jail_total <- prison %>%
   pull(jail_total)
 
 # proportion of black and total individuals in jail
-black_jail_prop <- round((black_jail_total / jail_total), 2) * 10
+black_jail_prop <- round((black_jail_total / jail_total), 2) * 100
 
 ## year with the most black individuals in jail
 total_black_pop_year <- prison %>%
@@ -119,7 +119,7 @@ plot_jail_pop_by_states <- function(states) {
     )
 }
 
-states_pop_plot <- plot_jail_pop_by_states(c("CA", "FL", "OH", "IL"))
+states_pop_plot <- plot_jail_pop_by_states(c("CA", "FL", "OH", "TX"))
 
 #----------------------------------------------------------------------------#
 
@@ -167,9 +167,9 @@ section5plot <- function() {
       size = 6,
     ) +
     labs(
-      x = "--",
-      y = "--",
-      title = "--"
+      x = "Percentage of White population in Jail",
+      y = "Percentage of Black and Latinx population in Jail",
+      title = "Percentage of Black/Latinx and White Population in Jail in each Region of the U.S."
     )
   plot <- ggplotly(plot)
   return(plot)

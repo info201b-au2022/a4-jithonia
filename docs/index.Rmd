@@ -14,22 +14,25 @@ source("../source/analysis.R")
 The justice system of America is said to be fair, but there are still manifestations of racism in these systems. Observing incarceration trends can answer the questions of how prevalent racism is in the prison systems, if and how it has progressed over the years, and other forms of inequalities there are in the systems.  
 
 ## Introduction 
-[TODO]
-
+ *Questions*:
+ 1). How has population in the U.S. jail population changed from 1970 to 2018? What might be the explanation for this?
+ 2). How has the population in the U.S. jail population altered in some of the most populated U.S. states (CA, FL, OH, TX)? How do they compare to one another?
+ 3). How does the black and latinx population in jail compare to the white population? Why might this be?
+ 4). 
+ 
 ## Data Summary 
-Question 1: What is the percentage of black individuals in jail compared to total jail population in the year 2018? 
+*Question 1*: What is the percentage of black individuals in jail compared to total jail population in the year 2018? 
 
-The percentage of black individuals in jail is **`r black_jail_prop`**%. 
+The percentage of black individuals in jail is **`r black_jail_prop`**%. This is important to evaluate, as we can compare this value with the percentage of the black population in the U.S. Comparing these two values can help determine how black people are disproportionately incarcerated. 
 
-Question 2: What year has the highest black population in jail? 
+*Question 2*: What year has the highest black population in jail? 
 
-**`r highest_black_pop_year`** had the highest black population in jail. 
+**`r highest_black_pop_year`** had the highest black population in jail. This statistic can help depict what time period might have had the most wrongly incarcerated black individuals. This peak year shows that there might be some sort of improvement of black people getting disproportionaly incarcerated. 
 
-Question 3: What county has the highest population of black and latinx individuals in jail in 2018?
+*Question 3*: What county has the highest population of black and latinx individuals in jail in 2018?
 
-**`r county_highest_black_pop`** has the highest population of black individuals in jail.
-
-**`r county_highest_latinx_pop` has the highest population of latinx individuals in jail.
+**`r county_highest_black_pop`** has the highest population of black individuals in jail. 
+**`r county_highest_latinx_pop`** has the highest population of latinx individuals in jail. This statistic could be because of the population of latinx and black could be higher in that county, the crime rates are generally higher, and/or that the the county has a higher rate of wrongly incarcerated black individuals.
 
 ## U.S. Jail Population Growth
 ```{r fig.height = 8, fig.width = 8, fig.align = "center", echo = FALSE}
