@@ -1,6 +1,7 @@
 library(tidyverse)
 library(dplyr)
 library(plotly)
+library(leaflet)
 
 # The functions might be useful for A4
 source("../source/a4-helpers.R")
@@ -38,36 +39,30 @@ jail_total <- prison %>%
   pull(jail_total)
 
 # proportion of black and total individuals in jail
-black_jail_prop <- black_jail_total / jail_total
+black_jail_prop <- round((black_jail_total / jail_total), 2)
 
-##
-
-total_female_jail_pop <- prison %>%
-  filter(
-    year == max(year),
-    !is.na(female_jail_pop),
-    !is.na(male_jail_pop)
-  ) %>%
+## year with the most black individuals in jail
+total_black_pop_year <- prison %>%
+  group_by(year) %>%
   summarize(
-    female_total = round(sum(female_jail_pop))
-  ) %>%
-  pull(female_total)
+    black_total = sum(black_jail_pop, na.rm = TRUE)
+  )
 
-total_male_jail_pop <- prison %>%
-  filter(
-    year == max(year),
-    !is.na(female_jail_pop),
-    !is.na(male_jail_pop)
-  ) %>%
-  summarize(
-    male_total = sum(male_jail_pop)
-  ) %>%
-  pull(male_total)
+highest_black_pop_year <- total_black_pop_year %>%
+  filter(black_total == max(black_total, na.rm = TRUE)) %>%
+  pull(year)
 
-## County with highest prison population
-year_county_highest_prison_pop <- prison %>%
-  filter(total_prison_pop == max(total_prison_pop, na.rm = TRUE)) %>%
-  pull(year, county_name)
+## County with highest latinx jail population
+county_highest_latinx_pop <- prison %>%
+  filter(year == "2018") %>%
+  filter(latinx_jail_pop == max(latinx_jail_pop, na.rm = TRUE)) %>%
+  pull(county_name)
+
+## County with highest black jail population
+county_highest_black_pop <- prison %>%
+  filter(year == "2018") %>%
+  filter(black_jail_pop == max(black_jail_pop, na.rm = TRUE)) %>%
+  pull(county_name)
 
 ## Section 3  ----
 #----------------------------------------------------------------------------#
@@ -89,7 +84,8 @@ plot_jail_pop_for_us <- function() {
     labs(
       x = "Year",
       y = "Total Jail Population",
-      title = "Increase of Jail Population in U.S. (1970-2018)"
+      title = "Increase of Jail Population in U.S. (1970-2018)",
+      caption = "---"
     ) +
     scale_y_continuous(labels = scales::comma)
   return(plot)
@@ -118,7 +114,8 @@ plot_jail_pop_by_states <- function(states) {
     labs(
       x = "year",
       y = "Total Prison Population",
-      title = "-"
+      title = "-",
+      caption = "--"
     )
 }
 
@@ -135,35 +132,37 @@ black_latinx_jail_perc <- function() {
       !is.na(black_jail_pop),
       !is.na(white_jail_pop)
     ) %>%
-    group_by(region) %>% 
+    group_by(region) %>%
     summarize(
-      black_latinx_total = round(((sum(black_jail_pop) + sum(latinx_jail_pop))/ sum(total_jail_pop, na.rm = TRUE)), 3)
+      black_latinx_total = round(((sum(black_jail_pop) + sum(latinx_jail_pop)) / sum(total_jail_pop, na.rm = TRUE)), 3)
     )
 }
 
 white_jail_perc <- function() {
-  pop_white_jail <- prison %>% 
+  pop_white_jail <- prison %>%
     filter(
       !is.na(latinx_jail_pop),
       !is.na(black_jail_pop),
       !is.na(white_jail_pop)
     ) %>%
-    group_by(region) %>% 
-      summarize(
-        white_total <- round((sum(white_jail_pop)/(sum(total_jail_pop, na.rm = TRUE))), 3)
-      )
+    group_by(region) %>%
+    summarize(
+      white_total <- round((sum(white_jail_pop) / (sum(total_jail_pop, na.rm = TRUE))), 3)
+    )
 }
 
-combine <- data.frame(white_jail_perc(), black_latinx_jail_perc()) 
-  
+combine <- data.frame(white_jail_perc(), black_latinx_jail_perc())
+
 
 section5plot <- function() {
   plot <- ggplot(
     combine,
-    aes(x = black_latinx_total, 
-        y = white_total......., 
-        col = region)
-    ) + 
+    aes(
+      x = black_latinx_total,
+      y = white_total.......,
+      col = region
+    )
+  ) +
     geom_point(
       size = 6,
     ) +
@@ -171,17 +170,22 @@ section5plot <- function() {
       x = "--",
       y = "--",
       title = "--"
-      ) 
-    plot <- ggplotly(plot)
-    return(plot)
+    )
+  plot <- ggplotly(plot)
+  return(plot)
 }
 
 #----------------------------------------------------------------------------#
 
 ## Section 6  ----
 #----------------------------------------------------------------------------#
+section6 <- function() {
 
+}
 
+section6plot <- function() {
+
+}
 #----------------------------------------------------------------------------#
 
 
