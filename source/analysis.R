@@ -117,6 +117,7 @@ plot_jail_pop_by_states <- function(states) {
       title = "-",
       caption = "--"
     )
+  return(plot)
 }
 
 #----------------------------------------------------------------------------#
