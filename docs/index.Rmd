@@ -25,7 +25,7 @@ The **indirect stakeholders** are people in communities that face overpolicing. 
  
  1). How has population in the U.S. jail population changed from 1970 to 2018? What might be the explanation for this?
  
- 2). How has the population in the U.S. jail population altered in the U.S. states of California, Washington, and Oregon? How do they compare to one another?
+ 2). How has the population in the U.S. jail population altered in the U.S. states of California, Washington, Oregon, and Arizona? How do they compare to one another?
  
  3). How does the Black and Latinx population in jail compare to the white population? Why might this be?
  
@@ -55,15 +55,17 @@ plot_jail_pop_for_us()
 _Figure 1_. Increase of Jail Population in U.S. (1970 - 2018). This chart shows the stagnant jail population from until around 1979, where it seems to increase from around 200,000 to almost 800,000.From 2008 forward it seems to decrease slightly to 2018. 
 
 **How has population in the U.S. jail population changed from 1970 to 2018? What might be the explanation for this?** 
+
 The graph shows that the jail population has increased since 1970. This could be because of many factors, including the increasing population of the U.S., increasing crime rates, and new laws that have been passed since 1970. Since 1970, there have been changes in the length of time people serve for certain crimes, which can be a reason for the increase. 
 
 ## Growth of Prison Population by State
 ```{r fig.height = 8, fig.width= 8, fig.align = "center", echo = FALSE}
-plot_jail_pop_by_states(c("CA", "WA", "OR"))
+plot_jail_pop_by_states(c("CA", "WA", "OR", "NY"))
 ```
-_Figure 2_. Prison population of U.S. States California, 
+_Figure 2_. Prison population of U.S. States California, Washington, Oregon, and Arizona. This shows that the state of California has the highest prison population and has increased the most out of Washington and Oregon. 
 
-**How has the population in the U.S. jail population altered in the U.S. states of California, Washington, and Oregon? How do they compare to one another?**
+**How has the population in the U.S. jail population altered in the U.S. states of California, Washington, Oregon, and Arizona? How do they compare to one another?**
+The California 
 
 ## Comparing Population Percentages of Black/Latinx and White in Jail in each Region
 ```{r fig.height = 8, fig.width= 8, fig.align = "center", echo = FALSE}

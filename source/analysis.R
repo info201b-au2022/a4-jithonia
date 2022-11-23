@@ -163,42 +163,61 @@ plot_jail_pop_by_states <- function(states) {
 #----------------------------------------------------------------------------#
 
 ## Section 5  ----
+## How does the Black and Latinx population in jail compare to the
+## white population in each U.S. region?
 #----------------------------------------------------------------------------#
+
+# function that finds the combined percentage of Latinx and Black
+# jail population compared to total jail population
 black_latinx_jail_perc <- function() {
   black_and_latinx_jail_pop <- prison %>%
+    # filter out unknowns
     filter(
       !is.na(latinx_jail_pop),
       !is.na(black_jail_pop),
       !is.na(white_jail_pop)
     ) %>%
     group_by(region) %>%
+    # sums up the black and latinx jail population, divides it by the total
+    # jail population, rounds it to 3 places, and turns it into a percentage, 
     summarize(
       black_latinx_total = round(((sum(black_jail_pop) + sum(latinx_jail_pop)) / sum(total_jail_pop, na.rm = TRUE)), 3) * 100
     )
 }
 
+# function that finds the percentage of white 
+# jail population compared to total jail population
 white_jail_perc <- function() {
   pop_white_jail <- prison %>%
+    # filter out unknowns
     filter(
       !is.na(latinx_jail_pop),
       !is.na(black_jail_pop),
       !is.na(white_jail_pop)
     ) %>%
     group_by(region) %>%
+    # sums up the white jail population, divides it by the total
+    # jail population, rounds it to 3 places, and turns it into a percentage, 
     summarize(
       white_total <- round((sum(white_jail_pop) / (sum(total_jail_pop, na.rm = TRUE))), 3) * 100
     )
 }
 
+# combines these two functions into a single dataframe that
+# will be used for the plot (x for black/latinx and y for white)
 combine <- data.frame(white_jail_perc(), black_latinx_jail_perc()) 
 
-section5plot <- function() {
+# function that returns plot that compares percentages of jail
+# population of white and latinx/black
+black_latinx_white_perc_plot <- function() {
   plot <- ggplot(
     combine,
     aes(
       x = black_latinx_total,
       y = white_total.......,
+      # different color for each region
       col = region,
+      # labels that are shown when hovered over using ggplotly
       text = paste("Black/Latinx Percentage:", black_latinx_total, "%",
                    "\nWhite Percentage:", white_total......., "%",
                    "\nRegion:", region
@@ -206,13 +225,16 @@ section5plot <- function() {
     )
   ) +
     geom_point(
+      # increase size of point
       size = 6,
     ) +
+    # labels; x axis, y axis, and title
     labs(
-      x = "Percentage of White population in Jail",
-      y = "Percentage of Black and Latinx population in Jail",
+      x = "Combined Percentage of Black and Latinx population in Jail",
+      y = "Percentage of White Population in Jail",
       title = "Percentage of Black/Latinx and White Population in Jail in each Region of the U.S."
     )
+  # makes plot interactive
   plot <- ggplotly(plot, tooltip = c("text"))
   return(plot)
 }
