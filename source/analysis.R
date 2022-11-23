@@ -12,16 +12,19 @@ prison <- read_delim("https://raw.githubusercontent.com/vera-institute/incarcera
 
 ## Section 2  ----
 
-## proportion of black people in jail and the total jail population in the
-## most recent year (2018)
+## Q1: What is the percentage of black individuals in jail compared to total jail population in the year 2018?
+#----------------------#
 
-# Total number of black people in jail
+# Total number of black people in jail 
 black_jail_total <- prison %>%
+  # filter to the most recent year (2018)
   filter(year == max(year)) %>%
   filter(
+    # remove unknowns
     !is.na(black_jail_pop),
     !is.na(total_jail_pop)
   ) %>%
+  # add up population
   summarize(
     black_total = sum(black_jail_pop)
   ) %>%
@@ -29,66 +32,91 @@ black_jail_total <- prison %>%
 
 # total number of individuals in jail
 jail_total <- prison %>%
-  filter(year == max(year)) %>%
+  # filter to most recent year (2018)
   filter(year == max(year)) %>%
   filter(
+    # remove unknowns
     !is.na(black_jail_pop),
     !is.na(total_jail_pop)
   ) %>%
+  # add up population
   summarize(
     jail_total = sum(total_jail_pop)
   ) %>%
   pull(jail_total)
 
-# proportion of black and total individuals in jail
+# percentage of black and total individuals in jail
 black_jail_prop <- round((black_jail_total / jail_total), 2) * 100
+#--------------------------------#
 
-## year with the most black individuals in jail
+## Q2:What year has the highest black population in jail?
+#---------------------------#
+
+# black population grouped by year
 total_black_pop_year <- prison %>%
   group_by(year) %>%
   summarize(
+    # add up population
     black_total = sum(black_jail_pop, na.rm = TRUE)
   )
 
+# year with highest black population in jail
 highest_black_pop_year <- total_black_pop_year %>%
   filter(black_total == max(black_total, na.rm = TRUE)) %>%
   pull(year)
+#-------------------------------#
+
+## Q3: What county has the highest population of black and latinx individuals in jail in 2018?
+#-----------------------------#
 
 ## County with highest latinx jail population
 county_highest_latinx_pop <- prison %>%
+  # filter by most recent year (2018)
   filter(year == "2018") %>%
+  # filter to the highest population
   filter(latinx_jail_pop == max(latinx_jail_pop, na.rm = TRUE)) %>%
   pull(county_name)
 
 ## County with highest black jail population
 county_highest_black_pop <- prison %>%
+  # filter by most recent year (2018)
   filter(year == "2018") %>%
+  # filter to the highest population
   filter(black_jail_pop == max(black_jail_pop, na.rm = TRUE)) %>%
   pull(county_name)
+
+#----------------------------------#
 
 ## Section 3  ----
 #----------------------------------------------------------------------------#
 # Growth of the U.S. Prison Population
-# Your functions might go here ... <todo:  update comment>
 #----------------------------------------------------------------------------#
-# This function ... <todo:  update comment>
+
+## This function will be utilized in plot_jail_pop_for_us
 get_year_jail_pop <- function() {
   jail_pop_total <- prison %>%
+    # filter out unknown variables
     filter(!is.na(total_jail_pop)) %>%
     select(total_jail_pop, year)
   return(jail_pop_total)
 }
 
-# This function ... <todo:  update comment>
+# This function will use get_year_jail_pop(), using 
+# year as the x variable and total_jail_pop as the
+# y variable to create a graph using ggplot.
 plot_jail_pop_for_us <- function() {
-  plot <- ggplot(get_year_jail_pop(), aes(x = year, y = total_jail_pop)) +
+  plot <- ggplot(get_year_jail_pop(),
+                 aes(x = year,
+                     y = total_jail_pop)) +
+    # Used to make a bar graph
     geom_col() +
+    # Label the graph; x axis, y axis, title
     labs(
       x = "Year",
       y = "Total Jail Population",
-      title = "Increase of Jail Populgigation in U.S. (1970-2018)",
-      caption = "---"
+      title = "Increase of Jail Population in U.S. (1970-2018)"
     ) +
+    # To make the Y variables change to comma notation
     scale_y_continuous(labels = scales::comma)
   return(plot)
 }
@@ -97,27 +125,37 @@ plot_jail_pop_for_us <- function() {
 #----------------------------------------------------------------------------#
 # Growth of Prison Population by State
 
+# Function that takes in states and find the total prison
+# population by year for input states
 get_jail_pop_by_states <- function(states) {
   jail_pop_state <- prison %>%
+    # filter inputed states
     filter(state %in% states) %>%
+    # get rid of unknowns
     filter(!is.na(total_prison_pop)) %>%
     group_by(state, year) %>%
+    # sums up the population, keep all inputed states for plot
     summarize(
       total_prison_pop = sum(total_prison_pop), .groups = "keep"
     )
 }
 
+# function that uses get_jail_pop_by_states to plot a line graph
 plot_jail_pop_by_states <- function(states) {
   plot <- ggplot(
     get_jail_pop_by_states(states),
-    aes(x = year, y = total_prison_pop, col = state)
+    aes(x = year, 
+        y = total_prison_pop, 
+        # every state has a different color
+        col = state)
   ) +
+    # creates line graph
     geom_line() +
+    # labels; x axis, y axis, title
     labs(
-      x = "year",
+      x = "Year",
       y = "Total Prison Population",
-      title = "-",
-      caption = "--"
+      title = "Prison Population of Selected U.S. States (1970 - 2018)"
     )
   return(plot)
 }
@@ -220,6 +258,3 @@ section6plot <- function() {
 }
 
 #----------------------------------------------------------------------------#
-
-
-## Load data frame ----

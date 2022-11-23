@@ -14,42 +14,56 @@ source("../source/analysis.R")
 The justice system of America is said to be fair, but there are still manifestations of racism in these systems. Observing incarceration trends can answer the questions of how prevalent racism is in the prison systems, if and how it has progressed over the years, and other forms of inequalities there are in the systems.  
 
 ## Introduction 
- **Questions**:
+This report uses incarceration data to investigate social issues regarding incarceration trends. The dataset that is used provides information on jail population and rates regarding gender, race, and other variables. With this data, it can analyze unjust incarceration trends to do with racial inequalities and other problems with the Justice System. Specifically, this report on the incarceration trends of the Black and Latinx community. 
+
+The **direct stakeholders** are the people in the government systems, such as the Justice System, that are directly involved in the incarceration of individuals. Some central values these people might hold are justice and equality.
+
+The **indirect stakeholders** are people in communities that face overpolicing. This can include people of poorer communities and people of color. According to the Vera Institute, Black people are twice as likely to be arrested as white people. People of these communities are in need of justice and equality from the Justice System. 
+
+
+ **Questions** answered in the report:
  
  1). How has population in the U.S. jail population changed from 1970 to 2018? What might be the explanation for this?
  
- 2). How has the population in the U.S. jail population altered in some of the most populated U.S. states (CA, FL, OH, TX)? How do they compare to one another?
+ 2). How has the population in the U.S. jail population altered in the U.S. states of California, Washington, and Oregon? How do they compare to one another?
  
- 3). How does the black and latinx population in jail compare to the white population? Why might this be?
+ 3). How does the Black and Latinx population in jail compare to the white population? Why might this be?
  
- 4). 
+ 4). How does the Latinx and Black jail population differ from state to state in the U.S.? Are there any trends?
  
 ## Data Summary 
 _**Question 1**: What is the percentage of black individuals in jail compared to total jail population in the year 2018?_
 
-The percentage of black individuals in jail is **`r black_jail_prop`**%. This is important to evaluate, as we can compare this value with the percentage of the black population in the U.S. Comparing these two values can help determine how black people are disproportionately incarcerated. 
+The percentage of black individuals in jail is **`r black_jail_prop`**%. This is important to evaluate, as we can compare this value with the percentage of the black population in the U.S. Comparing these two values can help determine how Black people are disproportionately incarcerated. According to the U.S. Census data, the Black population in the U.S. in 2018 was around 13 - 14%. Comparing these two percentages, there is quite a disparity. 
 
 
-_**Question 2**: What year has the highest black population in jail_
+_**Question 2**: What year has the highest black population in jail?_
 
-**`r highest_black_pop_year`** had the highest black population in jail. This statistic can help depict what time period might have had the most wrongly incarcerated black individuals. This peak year shows that there might be some sort of improvement of black people getting disproportionaly incarcerated.
+**`r highest_black_pop_year`** had the highest black population in jail. This statistic can help depict what time period might have had the most wrongly incarcerated black individuals. This peak year shows that there might be some sort of improvement of black people getting disproportionately incarcerated. 
 
 
-_**Question 3**: What county has the highest population of black and latinx individuals in jail in 2018?_
+_**Question 3**: What county has the highest population of Black and Latinx individuals in jail in 2018?_
 
 **`r county_highest_black_pop`** has the highest population of black individuals in jail. 
-**`r county_highest_latinx_pop`** has the highest population of latinx individuals in jail. This statistic could be because of the population of latinx and black could be higher in that county, the crime rates are generally higher, and/or that the the county has a higher rate of wrongly incarcerated black individuals.
+**`r county_highest_latinx_pop`** has the highest population of latinx individuals in jail. We can see that these two counties are the same for both Black and Latinx. This does not surprise me as I am well aware that the county has a high unhoused community, which is a community that is said to be overpoliced. 
 
 
-## U.S. Jail Population Growth
+## Growth of the U.S. Population
 ```{r fig.height = 8, fig.width = 8, fig.align = "center", echo = FALSE}
 plot_jail_pop_for_us()
 ```
+_Figure 1_. Increase of Jail Population in U.S. (1970 - 2018). This chart shows the stagnant jail population from until around 1979, where it seems to increase from around 200,000 to almost 800,000.From 2008 forward it seems to decrease slightly to 2018. 
 
-## State Jail Population Growth 
+**How has population in the U.S. jail population changed from 1970 to 2018? What might be the explanation for this?** 
+The graph shows that the jail population has increased since 1970. This could be because of many factors, including the increasing population of the U.S., increasing crime rates, and new laws that have been passed since 1970. Since 1970, there have been changes in the length of time people serve for certain crimes, which can be a reason for the increase. 
+
+## Growth of Prison Population by State
 ```{r fig.height = 8, fig.width= 8, fig.align = "center", echo = FALSE}
-plot_jail_pop_by_states(c("CA", "FL", "OH", "TX"))
+plot_jail_pop_by_states(c("CA", "WA", "OR"))
 ```
+_Figure 2_. Prison population of U.S. States California, 
+
+**How has the population in the U.S. jail population altered in the U.S. states of California, Washington, and Oregon? How do they compare to one another?**
 
 ## Comparing Population Percentages of Black/Latinx and White in Jail in each Region
 ```{r fig.height = 8, fig.width= 8, fig.align = "center", echo = FALSE}
