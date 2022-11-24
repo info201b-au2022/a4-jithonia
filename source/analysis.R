@@ -257,7 +257,7 @@ black_latinx_jail_map_data <- function() {
            year == max(year)) %>% 
     summarize(
       ## adds up total black and latinx population
-      black_latinx_total = sum(black_jail_pop) + sum(latinx_jail_pop)
+      black_latinx_total = round(sum(black_jail_pop) + sum(latinx_jail_pop))
     )
 }
 
@@ -282,15 +282,17 @@ section6plot <- function() {
     geom_polygon(
       aes(x = long,
           y = lat,
+          text = paste("Black and Latinx Population:", black_latinx_total),
           group = group, fill = black_latinx_total),
       color = "black"
     ) +
     ## rid of excess materials; grid lines 
     theme_void() + 
     labs(
-      title = "Combines Black and Latinx Jail Population in the U.S. (2018)",
+      title = "Combined Black and Latinx Jail Population in the U.S. (2018)",
       fill = "Black/Latinx Population"
     )
+  plot6 <- ggplotly(plot6, tooltip = c("text"))
   return(plot6)
 }
 

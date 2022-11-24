@@ -48,7 +48,7 @@ _**Question 3**: What county has the highest population of Black and Latinx indi
 **`r county_highest_latinx_pop`** has the highest population of latinx individuals in jail. We can see that these two counties are the same for both Black and Latinx. This does not surprise me as I am well aware that the county has a high unhoused community, which is a community that is said to be overpoliced. 
 
 
-## Growth of the U.S. Population
+## Growth of the U.S. Prison Population
 ```{r fig.height = 8, fig.width = 8, fig.align = "center", echo = FALSE}
 plot_jail_pop_for_us()
 ```
@@ -71,12 +71,16 @@ California has the highest prison population, while Oregon and Washington are th
 ```{r fig.height = 8, fig.width= 8, fig.align = "center", echo = FALSE}
 black_latinx_white_perc_plot()
 ```
-_Figure 3_. Combined Black and Latinx population in jail compared to White population in 
+_Figure 3_. Combined Black and Latinx Population Percentage in Jail Compared to White Population. The Black/Latinx population percentage is the smallest, while the White percentage is the highest in the Midwest. The Black/Latinx population percentage is the highest, while the White percentage is the lowest in the Northeast. 
 
 **How does the Black and Latinx population in jail compare to the White population in each U.S. region?**
+The combined Black/Latinx population percentage is larger than the White population in West, South, and Northeast, while the White percentage is greater in the Midwest. This might be because of the different race makeup of the regions that affect these different percentages. As well as there are more high poverty stricken places in some of these regions, and the Black and Latinx community have the highest poverty rate.  
 
-## Section 6
+## Black/Latinx Jail Population Spread in the U.S. 
 ```{r fig.width = 10, fig.align = "center", echo = FALSE}
 section6plot()
 ```
-[TODO]
+_Figure 4_. The Combined Black and Latinx Jail Population the U.S. Ligher the color, the higher the Black/Latinx jail population. California and Texas seem to have the highest jail population of Black/Latinx individuals. 
+
+**How does the Latinx and Black jail population differ from state to state in the U.S.? Are there any trends?** 
+California and Texas seem to have the highest jail population of Black/Latinx, with Florida and Georgia being behind them. One reasoning behind this might be that California, Texas, and Florida have the highest Latino population and Georgia has the highest Black population. But, this does not justify these numbers because other states with high populations of Black and Latinx individuals do not have the same Jail population numbers. I believe this might be because of the poverty levels in some states as well as the different policing. 
