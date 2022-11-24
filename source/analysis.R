@@ -8,6 +8,7 @@ library(maps)
 source("../source/a4-helpers.R")
 
 # Load dataset
+## was not able to download dataset so I am using read_delim
 prison <- read_delim("https://raw.githubusercontent.com/vera-institute/incarceration-trends/master/incarceration_trends.csv")
 
 ## Section 2  ----
@@ -282,9 +283,8 @@ section6plot <- function() {
     geom_polygon(
       aes(x = long,
           y = lat,
-          text = paste("Black and Latinx Population:", black_latinx_total),
           group = group, fill = black_latinx_total),
-      color = "black"
+      color = "black",
     ) +
     ## rid of excess materials; grid lines 
     theme_void() + 
@@ -292,7 +292,7 @@ section6plot <- function() {
       title = "Combined Black and Latinx Jail Population in the U.S. (2018)",
       fill = "Black/Latinx Population"
     )
-  plot6 <- ggplotly(plot6, tooltip = c("text"))
+  plot6 <- ggplotly(plot6)
   return(plot6)
 }
 
