@@ -232,7 +232,7 @@ black_latinx_white_perc_plot <- function() {
     labs(
       x = "Combined Percentage of Black and Latinx population in Jail",
       y = "Percentage of White Population in Jail",
-      title = "Percentage of Black/Latinx and White Population in Jail in each Region of the U.S."
+      title = "Combined Percentage of Black/Latinx and White Population in Jail in each Region of the U.S."
     )
   # makes plot interactive
   plot <- ggplotly(plot, tooltip = c("text"))
@@ -241,39 +241,54 @@ black_latinx_white_perc_plot <- function() {
 
 #----------------------------------------------------------------------------#
 
-## Section 6  ----
+## Section 6  
+## How does the Latinx and Black jail population differ 
+## from state to state in the U.S.? Are there any trends?
 #----------------------------------------------------------------------------#
+
+## gets the total black and latinx population by state
 black_latinx_jail_map_data <- function() {
   black_latinx_jail_pop <- prison %>%
     group_by(state) %>% 
+    ## get rid of unknowns
     filter(!is.na(black_jail_pop),
            !is.na(latinx_jail_pop),
-           !is.na(white_jail_pop),
+           ## sort by most recent year
            year == max(year)) %>% 
     summarize(
+      ## adds up total black and latinx population
       black_latinx_total = sum(black_jail_pop) + sum(latinx_jail_pop)
     )
 }
 
+## uses state.fips to combine to black_latinx_jail_map_data()
+## to use for the section 6 map
 states <- state.fips
+## gets rid of anything after the : in polyname 
 states$polyname <- gsub(":[[:alnum:][:space:][:punct:]]+", "", states$polyname)
+## keeps distinct states, abb, and polyname
 states <- distinct(states, abb, polyname)
+## combines the two dataframes by the state abbreviation
+mapdata <- inner_join(states, black_latinx_jail_map_data(), by = c("abb" = "state"))
 
-section6data <- inner_join(states, black_latinx_jail_map_data(), by = c("abb" = "state"))
-
-
+## map that shows the combined black/latinx population differences
+## by state
 section6plot <- function() {
+  # outlines the states on graph
   shape <- map_data("state") %>% 
-    inner_join(section6data, by = c("region" = "polyname"))
+    inner_join(mapdata, by = c("region" = "polyname"))
   plot6 <- ggplot(shape) +
+    ## represents each state of US
     geom_polygon(
       aes(x = long,
           y = lat,
           group = group, fill = black_latinx_total),
       color = "black"
     ) +
+    ## rid of excess materials; grid lines 
     theme_void() + 
     labs(
+      title = "Combines Black and Latinx Jail Population in the U.S. (2018)",
       fill = "Black/Latinx Population"
     )
   return(plot6)

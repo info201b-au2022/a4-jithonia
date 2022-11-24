@@ -25,9 +25,9 @@ The **indirect stakeholders** are people in communities that face overpolicing. 
  
  1). How has population in the U.S. jail population changed from 1970 to 2018? What might be the explanation for this?
  
- 2). How has the population in the U.S. jail population altered in the U.S. states of California, Washington, Oregon, and Arizona? How do they compare to one another?
+ 2). How has the population in the U.S. jail population altered in the U.S. states of California, Washington, Oregon, and New York? How do they compare to one another?
  
- 3). How does the Black and Latinx population in jail compare to the white population? Why might this be?
+ 3). How does the Black and Latinx population in jail compare to the white population in each U.S. region?
  
  4). How does the Latinx and Black jail population differ from state to state in the U.S.? Are there any trends?
  
@@ -62,15 +62,18 @@ The graph shows that the jail population has increased since 1970. This could be
 ```{r fig.height = 8, fig.width= 8, fig.align = "center", echo = FALSE}
 plot_jail_pop_by_states(c("CA", "WA", "OR", "NY"))
 ```
-_Figure 2_. Prison population of U.S. States California, Washington, Oregon, and Arizona. This shows that the state of California has the highest prison population and has increased the most out of Washington and Oregon. 
+_Figure 2_. Prison Population of U.S. States California, Washington, Oregon, and New York (1980 - 2018). This shows that the state of California has the highest prison population and has increased the most, while Oregon and Washington have the least, but have been slightly increasing. 
 
-**How has the population in the U.S. jail population altered in the U.S. states of California, Washington, Oregon, and Arizona? How do they compare to one another?**
-The California 
+**How has the population in the U.S. jail population altered in the U.S. states of California, Washington, Oregon, and New York? How do they compare to one another?**
+California has the highest prison population, while Oregon and Washington are the lowest, and New York is in between. I assume that California's prison population is has the biggest increase compared to the others as the it has had a dramatic increase of population among the years. Also, California is known to have a high unhoused population, which contributes to these statistics. 
 
 ## Comparing Population Percentages of Black/Latinx and White in Jail in each Region
 ```{r fig.height = 8, fig.width= 8, fig.align = "center", echo = FALSE}
-section5plot()
+black_latinx_white_perc_plot()
 ```
+_Figure 3_. Combined Black and Latinx population in jail compared to White population in 
+
+**How does the Black and Latinx population in jail compare to the White population in each U.S. region?**
 
 ## Section 6
 ```{r fig.width = 10, fig.align = "center", echo = FALSE}
