@@ -292,7 +292,6 @@ section6plot <- function() {
       title = "Combined Black and Latinx Jail Population in the U.S. (2018)",
       fill = "Black/Latinx Population"
     )
-  plot6 <- ggplotly(plot6)
   return(plot6)
 }
 

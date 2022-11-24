@@ -11,10 +11,10 @@ source("../source/analysis.R")
 ```
 
 ## Abstract 
-The justice system of America is said to be fair, but there are still manifestations of racism in these systems. Observing incarceration trends can answer the questions of how prevalent racism is in the prison systems, if and how it has progressed over the years, and other forms of inequalities there are in the systems.  
+The Justice System of America is said to be fair, but there are still manifestations of racism in these systems. Observing incarceration trends can answer the questions of how prevalent racism is in the prison systems, if and how it has progressed over the years, and other forms of inequalities there are in the systems.  
 
 ## Introduction 
-This report uses incarceration data to investigate social issues regarding incarceration trends. The dataset that is used provides information on jail population and rates regarding gender, race, and other variables. With this data, it can analyze unjust incarceration trends to do with racial inequalities and other problems with the Justice System. Specifically, this report on the incarceration trends of the Black and Latinx community. 
+This report uses incarceration data to investigate social issues regarding incarceration trends. The dataset that is used provides information on jail population and rates regarding gender, race, and other variables. With this data, it can be utilized to find unjust incarceration trends to do with racial inequalities and other problems with the Justice System. Specifically, this report on the incarceration trends of the Black and Latinx community. 
 
 The **direct stakeholders** are the people in the government systems, such as the Justice System, that are directly involved in the incarceration of individuals. Some central values these people might hold are justice and equality.
 
@@ -62,7 +62,8 @@ The graph shows that the jail population has increased since 1970. This could be
 ```{r fig.height = 8, fig.width= 8, fig.align = "center", echo = FALSE}
 plot_jail_pop_by_states(c("CA", "WA", "OR", "NY"))
 ```
-_Figure 2_. Prison Population of U.S. States California, Washington, Oregon, and New York (1980 - 2018). This shows that the state of California has the highest prison population and has increased the most, while Oregon and Washington have the least, but have been slightly increasing. 
+_Figure 2_. Prison Population of U.S. States California, Washington, Oregon, and New York (1980 - 2018). This shows that the state of California has the highest prison population and has increased the most, while Oregon and Washington have the least,
+
 
 **How has the population in the U.S. jail population altered in the U.S. states of California, Washington, Oregon, and New York? How do they compare to one another?**
 California has the highest prison population, while Oregon and Washington are the lowest, and New York is in between. I assume that California's prison population is has the biggest increase compared to the others as the it has had a dramatic increase of population among the years. Also, California is known to have a high unhoused population, which contributes to these statistics. 
@@ -74,7 +75,7 @@ black_latinx_white_perc_plot()
 _Figure 3_. Combined Black and Latinx Population Percentage in Jail Compared to White Population. The Black/Latinx population percentage is the smallest, while the White percentage is the highest in the Midwest. The Black/Latinx population percentage is the highest, while the White percentage is the lowest in the Northeast. 
 
 **How does the Black and Latinx population in jail compare to the White population in each U.S. region?**
-The combined Black/Latinx population percentage is larger than the White population in West, South, and Northeast, while the White percentage is greater in the Midwest. This might be because of the different race makeup of the regions that affect these different percentages. As well as there are more high poverty stricken places in some of these regions, and the Black and Latinx community have the highest poverty rate.  
+The combined Black/Latinx population percentage is larger than the White population in West, South, and Northeast, while the White percentage is greater in the Midwest. This might be because of the different race makeup of the regions that affect these different percentages. As well as there are more high poverty stricken places in some of these regions, and the Black and Latinx community have the highest poverty rate in the Country. 
 
 ## Black/Latinx Jail Population Spread in the U.S. 
 ```{r echo = FALSE, fig.width = 10, fig.align = "center"}
